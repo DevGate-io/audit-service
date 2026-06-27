@@ -1,0 +1,38 @@
+services:
+  db:
+    image: 'postgres:latest'
+    env_file:
+      - '../../.env'
+    ports:
+      - '5433:5432'
+    networks:
+      - app_network
+  app:
+    image: amazoncorretto:21.0.9
+    container_name: spring-boot-kotlin-template
+    env_file:
+      - ../../.env
+    environment:
+      JAVA_TOOL_OPTIONS: -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005
+    ports:
+      - "8080:8080"
+      # порт для дебага в контейнере
+      - "5005:5005"
+    networks:
+      - app_network
+    volumes:
+      - ./build/libs:/app
+      - ./src/main/resources:/app/src/main/resources
+    command: [ "java", "-jar", "/app/com.devgate.users.jar" ]
+    depends_on:
+      - redis
+      - db
+  redis:
+    image: 'redis:latest'
+    ports:
+      - '6379'
+    networks:
+      - app_network
+
+networks:
+  app_network:
