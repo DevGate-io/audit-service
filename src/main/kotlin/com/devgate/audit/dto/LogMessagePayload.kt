@@ -13,11 +13,13 @@ data class LogMessagePayload(
 	val payload: String? = null,
 	val createdAt: LocalDateTime? = null
 ) {
-	fun toAuditLog() = AuditLog().apply {
-		this.action = this@LogMessagePayload.action
-		this.actorId = this@LogMessagePayload.actorId
-		this.target = this@LogMessagePayload.target
-		this.payload = this@LogMessagePayload.payload
-		this.createdAt = this@LogMessagePayload.createdAt ?: LocalDateTime.now()
+	fun toAuditLog(): AuditLog {
+		val log = AuditLog()
+		log.action = action
+		log.actorId = actorId
+		log.target = target
+		log.payload = payload
+		log.createdAt = createdAt ?: LocalDateTime.now()
+		return log
 	}
 }

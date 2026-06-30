@@ -19,16 +19,20 @@ class AuditLog {
 	@GeneratedValue
 	var id: Long? = null
 
+	@Column(name = "action")
 	@Enumerated(EnumType.STRING)
 	var action: Action? = null
 
+	@Column(name = "actor_id")
 	var actorId: UUID? = null
 
 	@Embedded
 	var target: Target? = null
 
+	@Column(name = "payload")
 	var payload: String? = null
 
+	@Column(name = "created_at")
 	var createdAt: LocalDateTime = LocalDateTime.now()
 
 	override fun toString(): String {
