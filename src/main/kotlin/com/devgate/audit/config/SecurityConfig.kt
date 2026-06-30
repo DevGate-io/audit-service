@@ -20,6 +20,7 @@ class SecurityConfig {
 			.csrf { it.disable() }
 			.sessionManagement { it.sessionCreationPolicy(SessionCreationPolicy.STATELESS) }
 			.authorizeHttpRequests {
+				it.requestMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll()
 				it.anyRequest().permitAll()
 			}
 
