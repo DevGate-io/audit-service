@@ -13,7 +13,7 @@ class AuditLogServiceImpl @Autowired constructor(
 	private val logRepository: AuditLogRepository
 ): AuditLogService {
 	override fun getLogs(): List<AuditLog> {
-		return logRepository.findAll().sortedByDescending() { it.createdAt }
+		return logRepository.findAll().sortedByDescending { it.createdAt }
 	}
 
 	override fun getLogById(id: Long): AuditLog {

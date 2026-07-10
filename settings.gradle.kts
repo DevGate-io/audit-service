@@ -1,1 +1,1 @@
-rootProject.name = "audit-service"
+rootProject.name = "devgate-audit-service"
