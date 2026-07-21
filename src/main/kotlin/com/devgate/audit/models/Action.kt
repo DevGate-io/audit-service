@@ -3,6 +3,10 @@ package com.devgate.audit.models
 import com.fasterxml.jackson.annotation.JsonValue
 
 enum class Action(val value: String) {
+	PROJECT_CREATED("project.created"),
+	PROJECT_UPDATED("project.updated"),
+	PROJECT_DELETED("project.deleted"),
+
 	SERVICE_CREATED("service.created"),
 	SERVICE_UPDATED("service.updated"),
 	SERVICE_DELETED("service.deleted"),
